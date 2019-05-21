@@ -1,6 +1,6 @@
 const Operations = require('../infraestrutura/operations')
 
-const Pets = new Operations('pets')
+const Pets = new Operations('pet')
 
 
 module.exports = app => {

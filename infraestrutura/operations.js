@@ -1,4 +1,4 @@
-const database = require('../database')
+const cruds = require('./crud/index')
 
 class Operations {
   constructor(entidade) {
@@ -6,37 +6,24 @@ class Operations {
   }
 
   lista(res) {
-    res.send(database[this._entidade])
+    cruds[this._entidade].lista(res)
   }
 
   buscaPorId(res, id) {
-    const item = database[this._entidade].filter(item => item.id === id)
-    res.send(item)
+    cruds[this._entidade].buscaPorId(res, id)
   }
 
   adiciona(res, item) {
-    database[this._entidade].push(item)
-    res.send(item)
+    cruds[this._entidade].adiciona(res, item)
+
   }
 
   atualiza(res, novoItem, id) {
-    const novosItens = database[this._entidade].map(item => {
-      let itemAlterado = item
-      if(item.id === id) {
-        itemAlterado = {...novoItem}
-      }
-
-      return itemAlterado
-    })
-    database[this._entidade] = novosItens
-
-    res.send(novoItem)
+    cruds[this._entidade].atualiza(res, novoItem, id)
   }
 
   deleta(res, id) {
-    const novosItens = database[this._entidade].filter(item => !(item.id === id))
-    database[this._entidade] = [...novosItens]
-    res.send(database)
+    cruds[this._entidade].deleta(res, id)
   }
 }
 

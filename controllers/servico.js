@@ -1,6 +1,6 @@
 const Operations = require('../infraestrutura/operations')
 
-const Servicos = new Operations('servicos')
+const Servicos = new Operations('servico')
 
 module.exports = app => {
   app.get('/servicos', (req, res) => {
