@@ -3,14 +3,12 @@ const Operations = require('../infraestrutura/operations')
 const Clientes = new Operations('cliente')
 
 module.exports = app => {
-  app.get('/clientes', (req, res) => {
-    Clientes.lista(res)
+  app.get('/clientes', () => {
+    return Clientes.lista()
   })
 
-  app.get('/clientes/cliente/:id', (req, res) => {
-    const { id } = req.params
-
-    Clientes.buscaPorId(res, id)
+  app.get('/clientes/cliente/:id', (id) => {
+     Clientes.buscaPorId(id)
   })
 
   app.post('/clientes/cliente', (req, res) => {

@@ -1,0 +1,20 @@
+type Atendimento {
+  ID: ID!
+  ClienteID: Int!
+  PetID: Int
+  ServicoID: Int
+  Data: String!
+  Status: String!
+  Observacoes: String
+}
+
+type Query {
+  atendimentos: [Atendimento!]!
+  atendimento(ID: ID!): Atendimento!
+}
+
+type Mutation {
+  adicionaAtendimento(ClienteID: Int!, PetID: Int, ServicoID: Int, Status: String!, Observacoes: String): Atendimento!
+  atualizaAtendimento(ID: ID!, ClienteID: Int!, PetID: Int, ServicoID: Int, Status: String!, Observacoes: String): Atendimento!
+  deletaAtendimento(ID: ID!): ID
+}

@@ -1,40 +1,48 @@
 const executaQuery = require('../database/queries')
 
 class Atendimento {
-  lista(res) {
+  lista() {
     const sql = 'SELECT * FROM Atendimentos'
 
-    executaQuery(res, sql)
+    return executaQuery(sql)
   }
 
-  buscaPorId(res, id) {
+  buscaPorId(id) {
     const sql = `SELECT * FROM Atendimentos WHERE ID=${parseInt(id)}`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(data => data[0])
   }
 
-  adiciona(res, item) {
-    const { cliente, pet, servico, status, observacoes } = item
-    const data = new Date().toLocaleDateString()
+  adiciona(item, date) {
+    const { ClienteID, PetID, ServicoID, Status, Observacoes } = item
+    const Data = new Date().toLocaleDateString()
 
-    const sql = `INSERT INTO Atendimentos(ClienteID, PetID, ServicoID, Data, Status, Observacoes) VALUES(${cliente}, ${pet}, ${servico}, ${data}, '${status}', '${observacoes}')`
+    const sql = `INSERT INTO Atendimentos(ClienteID, PetID, ServicoID, Data, Status, Observacoes) VALUES(${ClienteID}, ${PetID}, ${ServicoID}, ${Data}, '${Status}', '${Observacoes}')`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(atendimento => ({
+      ID: atendimento.insertId,
+      ClienteID,
+      PetID,
+      ServicoID,
+      Data,
+      Status,
+      Observacoes
+    }))
   }
 
-  atualiza(res, novoItem, id) {
-    const { nome, dono, tipo, observacoes } = item
+  atualiza(novoItem) {
+    const { ID, ClienteID, PetID, ServicoID, Status, Observacoes } = novoItem
 
-    const sql = `UPDATE Atendimentos SET Nome='${nome}', DonoID=${dono}, Tipo='${tipo}', Observacoes='${obervacoes}' WHERE ID=${id}`
+    const sql = `UPDATE Atendimentos SET ClienteID='${ClienteID}', PetID=${PetID}, ServicoID=${ServicoID}, Data=${Data}, Status='${Status}', Observacoes='${Observacoes}' WHERE ID=${ID}`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(() => novoItem)
   }
 
-  deleta(res, id) {
+  deleta(id) {
     const sql = `DELETE FROM Atendimentos WHERE ID=${id}`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(() => id)
   }
 }
 
-module.exports = new Atendimento
+module.exports = new Atendimento()

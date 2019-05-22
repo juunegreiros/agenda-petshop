@@ -1,8 +1,8 @@
-const customExpress = require('./config/custom-express')
+const { GraphQLServer } = require('graphql-yoga')
 const conexao = require('./infraestrutura/conexao')
 const Tabelas = require('./infraestrutura/database/tabelas')
-
-const app = customExpress()
+const resolvers = require('./infraestrutura/graphql/resolvers')
+const typeDefs = require('./infraestrutura/graphql/typeDefs')
 
 conexao.connect(erro => {
   if (erro) {
@@ -14,6 +14,9 @@ conexao.connect(erro => {
   Tabelas.init(conexao)
 })
 
-app.listen(4000, () => {
-  console.log('Servidor rodando na porta 4000')
+const server = new GraphQLServer({
+  typeDefs,
+  resolvers
 })
+
+server.start(() => console.log('Servidor rodando na porta 4000'))

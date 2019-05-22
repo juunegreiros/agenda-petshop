@@ -1,39 +1,45 @@
 const executaQuery = require('../database/queries')
 
 class Pet {
-  lista(res) {
+  lista() {
     const sql = 'SELECT * FROM Pets'
 
-    executaQuery(res, sql)
+    return executaQuery(sql)
   }
 
-  buscaPorId(res, id) {
+  buscaPorId(id) {
     const sql = `SELECT * FROM Pets WHERE ID=${parseInt(id)}`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(data => data[0])
   }
 
-  adiciona(res, item) {
-    const { nome, dono, tipo, observacoes } = item
+  adiciona(item) {
+    const { Nome, DonoID, Tipo, Observacoes } = item
 
-    const sql = `INSERT INTO Pets(Nome, DonoID, Tipo, Observacoes) VALUES('${nome}', ${dono}, '${tipo}', '${observacoes}')`
+    const sql = `INSERT INTO Pets(Nome, DonoID, Tipo, Observacoes) VALUES('${Nome}', ${DonoID}, '${Tipo}', '${Observacoes}')`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(pet => ({
+      ID: pet.insertId,
+      Nome,
+      DonoID,
+      Tipo,
+      Observacoes
+    }))
   }
 
-  atualiza(res, novoItem, id) {
-    const { nome, dono, tipo, observacoes } = item
+  atualiza(novoItem) {
+    const { ID, Nome, DonoID, Tipo, Observacoes } = novoItem
 
-    const sql = `UPDATE Pets SET Nome='${nome}', DonoID=${dono}, Tipo='${tipo}', Observacoes='${obervacoes}' WHERE ID=${id}`
+    const sql = `UPDATE Pets SET Nome='${Nome}', DonoID=${DonoID}, Tipo='${Tipo}', Observacoes='${Observacoes}' WHERE ID=${ID}`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(() => novoItem)
   }
 
-  deleta(res, id) {
+  deleta(id) {
     const sql = `DELETE FROM Pets WHERE ID=${id}`
 
-    executaQuery(res, sql)
+    executaQuery(sql).then(() => id)
   }
 }
 
-module.exports = new Pet
+module.exports = new Pet()

@@ -1,0 +1,13 @@
+type Query {
+  animals: [Animal!]!
+  animal(id: ID!): Animal!
+}
+
+type Mutation {
+  postAnimal(id: ID!, name: String!): Animal!
+}
+
+type Animal {
+  id: ID!
+  name: String!
+}

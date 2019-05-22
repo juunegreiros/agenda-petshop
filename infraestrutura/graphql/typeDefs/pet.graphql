@@ -1,0 +1,18 @@
+type Pet {
+  ID: ID
+  Nome: String!
+  DonoID: Int!
+  Tipo: String!
+  Observacoes: String
+}
+
+type Query {
+  pets: [Pet!]!
+  pet(ID: ID!): Pet!
+}
+
+type Mutation {
+  adicionaPet(Nome: String!, DonoID: Int!, Tipo: String!, Observacoes: String): Pet!
+  atualizaPet(ID: ID!, Nome: String, DonoID: Int, Tipo: String, Observacoes: String): Pet!
+  deletaPet(ID: ID!): ID
+}
