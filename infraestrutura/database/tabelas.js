@@ -10,25 +10,25 @@ class Tabelas {
   }
 
   criaClientes() {
-    const sql = 'CREATE TABLE IF NOT EXISTS Clientes (ID int NOT NULL AUTO_INCREMENT, Nome varchar(150) NOT NULL, CPF char(11) NOT NULL, PRIMARY KEY (ID));'
+    const sql = 'CREATE TABLE IF NOT EXISTS Clientes (id int NOT NULL AUTO_INCREMENT, nome varchar(150) NOT NULL, cpf char(11) NOT NULL, PRIMARY KEY (id));'
 
     this.criaTabela(sql)
   }
 
   criaPets() {
-    const sql = 'CREATE TABLE IF NOT EXISTS Pets (ID int NOT NULL AUTO_INCREMENT, Nome varchar(150), DonoID int, Tipo varchar(100), Observacoes text, PRIMARY KEY (ID), FOREIGN KEY (DonoID) references Clientes(ID))'
+    const sql = 'CREATE TABLE IF NOT EXISTS Pets (id int NOT NULL AUTO_INCREMENT, nome varchar(150), donoId int, tipo varchar(100), observacoes text, PRIMARY KEY (id), FOREIGN KEY (donoId) references Clientes(id))'
 
     this.criaTabela(sql)
   }
 
   criaServicos() {
-    const sql = 'CREATE TABLE IF NOT EXISTS Servicos (ID int NOT NULL AUTO_INCREMENT, Nome varchar(150), Preco decimal(5,2), Descricao text, PRIMARY KEY (ID))'
+    const sql = 'CREATE TABLE IF NOT EXISTS Servicos (id int NOT NULL AUTO_INCREMENT, nome varchar(150), preco decimal(5,2), descricao text, PRIMARY KEY (id))'
 
     this.criaTabela(sql)
   }
 
   criaAtendimentos() {
-    const sql = 'CREATE TABLE IF NOT EXISTS Atendimentos (ID int NOT NULL AUTO_INCREMENT, ClienteID int, PetID int, ServicoID int, Data datetime, Status varchar(100), Observacoes text, PRIMARY KEY(ID), FOREIGN KEY (ClienteId) references Clientes(ID), FOREIGN KEY (PetID) references Pets(ID), FOREIGN KEY (ServicoId) references Servicos(ID))'
+    const sql = 'CREATE TABLE IF NOT EXISTS Atendimentos (id int NOT NULL AUTO_INCREMENT, clienteId int, petId int, servicoId int, data datetime, status varchar(100), observacoes text, PRIMARY KEY(id), FOREIGN KEY (clienteId) references Clientes(id), FOREIGN KEY (petId) references Pets(id), FOREIGN KEY (servicoId) references Servicos(id))'
 
     this.criaTabela(sql)
   }

@@ -8,7 +8,7 @@ class Pet {
   }
 
   buscaPorId(res, id) {
-    const sql = `SELECT * FROM Pets WHERE ID=${parseInt(id)}`
+    const sql = `SELECT * FROM Pets WHERE id=${parseInt(id)}`
 
     executaQuery(res, sql)
   }
@@ -16,7 +16,7 @@ class Pet {
   adiciona(res, item) {
     const { nome, dono, tipo, observacoes } = item
 
-    const sql = `INSERT INTO Pets(Nome, DonoID, Tipo, Observacoes) VALUES('${nome}', ${dono}, '${tipo}', '${observacoes}')`
+    const sql = `INSERT INTO Pets(nome, donoId, tipo, observacoes) VALUES('${nome}', ${dono}, '${tipo}', '${observacoes}')`
 
     executaQuery(res, sql)
   }
@@ -24,13 +24,13 @@ class Pet {
   atualiza(res, novoItem, id) {
     const { nome, dono, tipo, observacoes } = item
 
-    const sql = `UPDATE Pets SET Nome='${nome}', DonoID=${dono}, Tipo='${tipo}', Observacoes='${obervacoes}' WHERE ID=${id}`
+    const sql = `UPDATE Pets SET nome='${nome}', donoId=${dono}, tipo='${tipo}', observacoes='${obervacoes}' WHERE id=${id}`
 
     executaQuery(res, sql)
   }
 
   deleta(res, id) {
-    const sql = `DELETE FROM Pets WHERE ID=${id}`
+    const sql = `DELETE FROM Pets WHERE id=${id}`
 
     executaQuery(res, sql)
   }

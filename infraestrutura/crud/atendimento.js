@@ -8,7 +8,7 @@ class Atendimento {
   }
 
   buscaPorId(res, id) {
-    const sql = `SELECT * FROM Atendimentos WHERE ID=${parseInt(id)}`
+    const sql = `SELECT * FROM Atendimentos WHERE id=${parseInt(id)}`
 
     executaQuery(res, sql)
   }
@@ -17,7 +17,7 @@ class Atendimento {
     const { cliente, pet, servico, status, observacoes } = item
     const data = new Date().toLocaleDateString()
 
-    const sql = `INSERT INTO Atendimentos(ClienteID, PetID, ServicoID, Data, Status, Observacoes) VALUES(${cliente}, ${pet}, ${servico}, ${data}, '${status}', '${observacoes}')`
+    const sql = `INSERT INTO Atendimentos(clienteId, petId, servicoId, data, status, observacoes) VALUES(${cliente}, ${pet}, ${servico}, ${data}, '${status}', '${observacoes}')`
 
     executaQuery(res, sql)
   }
@@ -25,13 +25,13 @@ class Atendimento {
   atualiza(res, novoItem, id) {
     const { nome, dono, tipo, observacoes } = item
 
-    const sql = `UPDATE Atendimentos SET Nome='${nome}', DonoID=${dono}, Tipo='${tipo}', Observacoes='${obervacoes}' WHERE ID=${id}`
+    const sql = `UPDATE Atendimentos SET nome='${nome}', donoId=${dono}, tipo='${tipo}', observacoes='${observacoes}' WHERE id=${id}`
 
     executaQuery(res, sql)
   }
 
   deleta(res, id) {
-    const sql = `DELETE FROM Atendimentos WHERE ID=${id}`
+    const sql = `DELETE FROM Atendimentos WHERE id=${id}`
 
     executaQuery(res, sql)
   }
