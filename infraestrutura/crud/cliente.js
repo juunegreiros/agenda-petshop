@@ -1,16 +1,16 @@
 const executaQuery = require('../database/queries')
 
 class Cliente {
-  lista(res) {
+  lista() {
     const sql = 'SELECT * FROM Clientes'
 
-    executaQuery(res, sql)
+    return executaQuery(sql)
   }
 
-  buscaPorId(res, id) {
+  buscaPorId(id) {
     const sql = `SELECT * FROM Clientes WHERE id=${id}`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(clientes => clientes[0])
   }
 
   adiciona(item) {
