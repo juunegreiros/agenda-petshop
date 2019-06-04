@@ -3,7 +3,6 @@ const conexao = require('./infraestrutura/conexao')
 const Tabelas = require('./infraestrutura/database/tabelas')
 const resolvers = require('./graphql/resolvers') 
 const typeDefs = require('./graphql/schemas')
-console.log('resolvers', resolvers)
 
 conexao.connect(erro => {
   if (erro) {

@@ -1,10 +1,10 @@
 const executaQuery = require('../database/queries')
 
 class Servico {
-  lista(res) {
+  lista() {
     const sql = 'SELECT * FROM Servicos'
 
-    executaQuery(res, sql)
+    return executaQuery(sql)
   }
 
   buscaPorId(res, id) {
@@ -13,11 +13,16 @@ class Servico {
     executaQuery(res, sql)
   }
 
-  adiciona(res, item) {
+  adiciona(item) {
     const { nome, preco, descricao } = item
     const sql = `INSERT INTO Servicos(nome, Preco, Descricao) VALUES('${nome}', ${preco}, '${descricao}')`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(resposta => ({
+      id: resposta.insertId,
+      nome,
+      preco,
+      descricao
+    }))
   }
 
   atualiza(res, novoItem, id) {
