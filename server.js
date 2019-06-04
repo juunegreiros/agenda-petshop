@@ -12,7 +12,7 @@ conexao.connect(erro => {
 
   Tabelas.init(conexao)
 })
-const Clientes = new Operacoes('cliente')
+
 const Pets = new Operacoes('pet')
 
 const resolvers = {
@@ -20,13 +20,16 @@ const resolvers = {
     status: () => "Servidor rodando!",
     clientes: () => Clientes.lista(),
     cliente: (root, { id }) => Clientes.buscaPorId(id),
-    pets: () => Pets.lista()
+    pets: () => Pets.lista(),
+    pet: (root, { id }) => Pets.buscaPorId(id)
   },
   Mutation: {
     adicionarCliente: (root, params) => Clientes.adiciona(params),
     atualizarCliente: (root, params) => Clientes.atualiza(params),
     deletarCliente: (root, { id }) => Clientes.deleta(id),
-    adicionarPet: (root, params) => Pets.adiciona(params)
+    adicionarPet: (root, params) => Pets.adiciona(params),
+    atualizarPet: (root, params) => Pets.atualiza(params),
+    deletarPet: (root, { id }) => Pets.deleta(id)
   }
 }
 
