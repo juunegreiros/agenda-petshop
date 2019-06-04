@@ -33,10 +33,10 @@ class Cliente {
     return executaQuery(sql).then(() => novoItem)
   }
 
-  deleta(res, id) {
+  deleta(id) {
     const sql = `DELETE FROM Clientes WHERE id=${id}`
 
-    executaQuery(res, sql)
+    return executaQuery(sql).then(() => id)
   }
 }
 
