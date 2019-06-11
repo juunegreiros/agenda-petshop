@@ -17,15 +17,16 @@ class Atendimento {
     const { cliente, pet, servico, status, observacoes } = item
     const data = new Date().toLocaleDateString()
 
-    const sql = `INSERT INTO Atendimentos(clienteId, petId, servicoId, data, status, observacoes) VALUES(${cliente}, ${pet}, ${servico}, ${data}, '${status}', '${observacoes}')`
+    const sql = `INSERT INTO Atendimentos(clienteId, petId, servicoId, data, status, observacoes) VALUES(${cliente}, ${pet}, ${servico}, '${data}', '${status}', '${observacoes}')`
 
     executaQuery(res, sql)
   }
 
   atualiza(res, novoItem, id) {
-    const { nome, dono, tipo, observacoes } = item
-
-    const sql = `UPDATE Atendimentos SET nome='${nome}', donoId=${dono}, tipo='${tipo}', observacoes='${observacoes}' WHERE id=${id}`
+    const { cliente, pet, servico, status, observacoes } = item
+    const data = new Date.toLocaleDateString()
+  
+    const sql = `UPDATE Atendimentos SET clienteId=${cliente}, petId=${pet}, servicoId=${servico}, data='${data}', status='${status}' observacoes='${observacoes}' WHERE id=${id}`
 
     executaQuery(res, sql)
   }
