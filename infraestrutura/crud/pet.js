@@ -22,9 +22,9 @@ class Pet {
   }
 
   atualiza(res, novoItem, id) {
-    const { nome, dono, tipo, observacoes } = item
+    const { nome, dono, tipo, observacoes } = novoItem
 
-    const sql = `UPDATE Pets SET nome='${nome}', donoId=${dono}, tipo='${tipo}', observacoes='${obervacoes}' WHERE id=${id}`
+    const sql = `UPDATE Pets SET nome='${nome}', donoId=${dono}, tipo='${tipo}', observacoes='${observacoes}' WHERE id=${id}`
 
     executaQuery(res, sql)
   }
