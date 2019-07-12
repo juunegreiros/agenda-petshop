@@ -5,6 +5,7 @@ class Tabelas {
     this.criaPets()
     this.criaServicos()
     this.criaAtendimentos()
+    this.populaTabelas()
 
     console.log('tabelas criadas!')
   }
@@ -29,6 +30,12 @@ class Tabelas {
 
   criaAtendimentos() {
     const sql = 'CREATE TABLE IF NOT EXISTS Atendimentos (id int NOT NULL AUTO_INCREMENT, clienteId int, petId int, servicoId int, data datetime, status varchar(100), observacoes text, PRIMARY KEY(id), FOREIGN KEY (clienteId) references Clientes(id), FOREIGN KEY (petId) references Pets(id), FOREIGN KEY (servicoId) references Servicos(id))'
+
+    this.criaTabela(sql)
+  }
+
+  populaTabelas() {
+    const sql = `INSERT INTO Clientes (nome, cpf) VALUES ('teste', '12345678910'); INSERT INTO Pets (nome, donoId, tipo, observacoes) VALUES ('teste', 1, 'animal de teste', 'observação teste')`
 
     this.criaTabela(sql)
   }
